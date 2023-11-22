@@ -16,6 +16,7 @@ export type CliParams = {
   prefixDefaultLocale: boolean
   packageDir: string
   afterGenerate?: AfterGenerateCallback
+  ignoreFiles?: string[]
 }
 
 export type Config = {
@@ -28,6 +29,7 @@ export type Config = {
   getCacheAbsolutePath: (fileName?: string) => string
   getOriginContents: (fileName: string) => string
   afterGenerate?: AfterGenerateCallback
+  ignoreFiles?: string[]
 }
 
 export type Origin = {

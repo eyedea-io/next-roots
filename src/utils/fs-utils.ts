@@ -67,18 +67,22 @@ export function makeDir(dirPath: string): void {
 /**
  * Removes given file recursively
  */
-export function removeDir(dirPath: string): void {
+export function removeDir(dirPath: string, ignore?: string[]): void {
   if (isDirectory(dirPath)) {
     readdirSync(dirPath).forEach((child) => {
       const childPath = path.join(dirPath, child)
       if (isDirectory(childPath)) {
         removeDir(childPath)
       } else {
-        unlinkSync(childPath)
+        if (!ignore?.includes(childPath)) {
+          unlinkSync(childPath)
+        }
       }
     })
 
-    rmdirSync(dirPath)
+    if (!ignore?.length) {
+      rmdirSync(dirPath)
+    }
   }
 }
 

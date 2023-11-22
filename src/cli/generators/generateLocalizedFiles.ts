@@ -60,7 +60,7 @@ export function generateLocalizedFilesFactory(config: Config) {
 
     // delete old files
     const localizedDir = getLocalizedAbsolutePath()
-    removeDir(localizedDir)
+    removeDir(localizedDir, config.ignoreFiles)
 
     // create new files
     const createLocalizedFile = createLocalizedFileFactory(config)

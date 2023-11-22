@@ -35,6 +35,7 @@ const cliDefaultParams: CliParams = {
   locales: [],
   prefixDefaultLocale: true,
   packageDir: path.join(process.cwd(), `node_modules/${PKG_NAME}`),
+  ignoreFiles: [],
 }
 
 const cliFileParams = require(path.join(process.cwd(), cfgPath))
