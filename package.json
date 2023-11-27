@@ -1,6 +1,6 @@
 {
   "name": "@eyedea/next-roots",
-  "version": "3.4.3",
+  "version": "3.4.4",
   "description": "Utility to handle internationalized routing for Next.js app folder.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -22,7 +22,7 @@
   "scripts": {
     "prepare": "husky install",
     "clean": "rm -rf dist || true",
-    "build": "yarn clean && yarn check:types && yarn test && node esbuild.mjs && yarn build:types",
+    "build": "yarn clean && yarn check:types && node esbuild.mjs && yarn build:types",
     "build:types": "yarn dts-bundle-generator --config ./dts.config.js",
     "build:no-test": "node esbuild.mjs",
     "build:coverage": "yarn clean && yarn check:types && yarn test && node esbuild.mjs",

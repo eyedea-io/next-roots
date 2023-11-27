@@ -12,8 +12,8 @@ function removeLocaleSegment(input: string) {
   return input.replace(/\/[(\w-)]+/, '')
 }
 
-function removePageSegment(input: string) {
-  return input.replace(/\/page\.([tj])sx?$/, '')
+function removeExtensionSegment(input: string) {
+  return input.replace(/\/index\.([tj])sx?$/, '').replace(/\.([tj])sx?$/, '')
 }
 
 function removeGroupSegments(input: string) {
@@ -39,7 +39,7 @@ function formatDynamicSegments(input: string) {
 
 function getRouteName({ originPath }: Rewrite) {
   const formatRouteName = pipe(
-    removePageSegment,
+    removeExtensionSegment,
     removeGroupSegments,
     removeParallelSegments,
     removeInterceptedSegments
@@ -51,7 +51,7 @@ function getRouteHref({ localizedPath }: Rewrite) {
   const localeSegment = extractLocaleSegment(localizedPath)
   const formatRouteHref = pipe(
     removeLocaleSegment,
-    removePageSegment,
+    removeExtensionSegment,
     removeGroupSegments,
     removeParallelSegments,
     removeInterceptedSegments,
@@ -61,7 +61,7 @@ function getRouteHref({ localizedPath }: Rewrite) {
 }
 
 function isRouteRewrite({ originPath }: Rewrite): boolean {
-  return Boolean(originPath.match(/\/page\.([tj])sx?$/)) || originPath === '/'
+  return Boolean(originPath.match(/\/*\.([tj])sx?$/)) || originPath === '/'
 }
 
 export function isRoute(input: unknown): input is Route {
