@@ -71,7 +71,7 @@ export function removeDir(dirPath: string, ignore?: string[]): void {
   if (isDirectory(dirPath)) {
     readdirSync(dirPath).forEach((child) => {
       const childPath = path.join(dirPath, child)
-      if (isDirectory(childPath)) {
+      if (isDirectory(childPath) && !ignore?.includes(childPath)) {
         removeDir(childPath)
       } else {
         if (!ignore?.includes(childPath)) {
